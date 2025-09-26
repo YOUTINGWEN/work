@@ -1,1 +1,55 @@
+import { useState } from "react";
+
+export default function Transcript() {
+  const transcript = [
+    { role: "與談人", text: "大家聽到這裡，其實應該也會有一些疑問吧？..." },
+    { role: "實驗人員", text: "我是桃園人，其實我原本有預期..." },
+    { role: "創作者", text: "其實這個作品我沒有覺得它跟紀錄片有直接關聯..." },
+    { role: "觀眾一", text: "我覺得在作品裡看到了一種考古的意圖..." },
+    { role: "實驗人員", text: "我們用分子生物的方法分析，發現有些菌減少..." },
+  ];
+
+  // 取出所有角色
+  const roles = [...new Set(transcript.map(item => item.role))];
+  const [selectedRoles, setSelectedRoles] = useState(roles);
+
+  const toggleRole = (role) => {
+    setSelectedRoles((prev) =>
+      prev.includes(role) ? prev.filter(r => r !== role) : [...prev, role]
+    );
+  };
+
+  return (
+    <div className="max-w-3xl mx-auto p-6">
+      {/* 篩選按鈕 */}
+      <div className="flex flex-wrap gap-2 mb-6">
+        {roles.map((role) => (
+          <button
+            key={role}
+            onClick={() => toggleRole(role)}
+            className={`px-4 py-2 rounded-full border transition ${
+              selectedRoles.includes(role)
+                ? "bg-indigo-600 text-white border-indigo-600"
+                : "bg-white text-gray-600 border-gray-300"
+            }`}
+          >
+            {role}
+          </button>
+        ))}
+      </div>
+
+      {/* 逐字稿內容 */}
+      <div className="space-y-4">
+        {transcript
+          .filter(item => selectedRoles.includes(item.role))
+          .map((item, i) => (
+            <div key={i} className="p-4 rounded-2xl shadow bg-white">
+              <p className="font-semibold text-indigo-600">{item.role}：</p>
+              <p className="text-gray-800 leading-relaxed">{item.text}</p>
+            </div>
+          ))}
+      </div>
+    </div>
+  );
+}
 
