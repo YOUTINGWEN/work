@@ -229,10 +229,26 @@
   </main>
 	
 </section>
+
+
+<section>
+  <div class="speaker" onclick="toggleContent(this)">觀眾一：</div>
+  <div class="content" style="display:none;">
+    我覺得我看到一個考古的那個意圖，就是...
+  </div>
+</section>
+
+<script>
+function toggleContent(el) {
+  const content = el.nextElementSibling;
+  content.style.display = (content.style.display === "none") ? "block" : "none";
+}
+</script>
+
+			
 			
 	 <p class="copyright">©2025 Ting-Wen You. All Rights Reserved.</p>
-		
-				
+			
 	</div>
 </div>
 
