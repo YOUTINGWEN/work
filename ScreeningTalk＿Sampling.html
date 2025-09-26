@@ -156,63 +156,75 @@
 		
 <!--section-->
 <section>
-import { useState } from "react";
+ <style>
+    body {
+      font-family: "Noto Sans TC", "Microsoft JhengHei", sans-serif;
+      line-height: 1.8;
+      margin: 0;
+      padding: 0;
+      background: #fafafa;
+      color: #333;
+    }
+    header {
+      background: #222;
+      color: #fff;
+      text-align: center;
+      padding: 2rem 1rem;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 1.8rem;
+    }
+    main {
+      max-width: 800px;
+      margin: 2rem auto;
+      padding: 0 1rem;
+    }
+    section {
+      margin-bottom: 2rem;
+      padding: 1rem 1.5rem;
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+    }
+    .speaker {
+      font-weight: bold;
+      color: #444;
+    }
+    .content {
+      margin-top: 0.5rem;
+      padding-left: 1rem;
+      border-left: 3px solid #ddd;
+    }
+    footer {
+      text-align: center;
+      font-size: 0.9rem;
+      padding: 1.5rem;
+      color: #666;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>放映會逐字稿</h1>
+    <p>與談紀錄</p>
+  </header>
 
-export default function Transcript() {
-  const transcript = [
-    { role: "與談人", text: "大家聽到這裡，其實應該也會有一些疑問吧？..." },
-    { role: "實驗人員", text: "我是桃園人，其實我原本有預期..." },
-    { role: "創作者", text: "其實這個作品我沒有覺得它跟紀錄片有直接關聯..." },
-    { role: "觀眾一", text: "我覺得在作品裡看到了一種考古的意圖..." },
-    { role: "實驗人員", text: "我們用分子生物的方法分析，發現有些菌減少..." },
-  ];
-
-  // 取出所有角色
-  const roles = [...new Set(transcript.map(item => item.role))];
-  const [selectedRoles, setSelectedRoles] = useState(roles);
-
-  const toggleRole = (role) => {
-    setSelectedRoles((prev) =>
-      prev.includes(role) ? prev.filter(r => r !== role) : [...prev, role]
-    );
-  };
-
-  return (
-    <div className="max-w-3xl mx-auto p-6">
-      {/* 篩選按鈕 */}
-      <div className="flex flex-wrap gap-2 mb-6">
-        {roles.map((role) => (
-          <button
-            key={role}
-            onClick={() => toggleRole(role)}
-            className={`px-4 py-2 rounded-full border transition ${
-              selectedRoles.includes(role)
-                ? "bg-indigo-600 text-white border-indigo-600"
-                : "bg-white text-gray-600 border-gray-300"
-            }`}
-          >
-            {role}
-          </button>
-        ))}
+  <main>
+    <section>
+      <div class="speaker">觀眾一：</div>
+      <div class="content">
+        我覺得我看到一個考古的那個意圖，就是因為我前面沒有參與到，就是這個科學研究或是中途再加入，但是我看那個，從那個挖土，然後跟你跑步，我覺得跑步，那個對我來說，好像有一種很肉身去測繪的，那種感覺，透過你的腳去把那個土地的，長寬，然後或者是那個位置，把它記錄下來，然後加上你說的盤點，但我會覺得好像跟我的一些經驗來說，比較像是就是把它透過你的身體...
       </div>
+    </section>
 
-      {/* 逐字稿內容 */}
-      <div className="space-y-4">
-        {transcript
-          .filter(item => selectedRoles.includes(item.role))
-          .map((item, i) => (
-            <div key={i} className="p-4 rounded-2xl shadow bg-white">
-              <p className="font-semibold text-indigo-600">{item.role}：</p>
-              <p className="text-gray-800 leading-relaxed">{item.text}</p>
-            </div>
-          ))}
+    <section>
+      <div class="speaker">藝術家：</div>
+      <div class="content">
+        謝謝你的觀察，其實我在創作的時候也有思考到這一層，就是用身體作為一種測量工具，把土地的狀態用行動記錄下來。那種跑步的動作，也是一種盤點的方式...
       </div>
-    </div>
-  );
-}
-
-
-	
+    </section>
+  </main>
 	
 </section>
 			
