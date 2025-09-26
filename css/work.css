@@ -45,8 +45,21 @@ section{
 	color:#868686;
 }
 
-
 /*w1*/
+.work_Sampling{
+	background:url("../images/Sampling_p0.jpg") no-repeat;
+	width: 300px;
+	height: 170px;
+	background-size: 200%;
+}
+
+.work_Sampling:hover{
+	background: url("../images/Sampling_p0.jpg")no-repeat;
+	background-size: 200%;
+	background-position: 100% 0px;
+}
+
+/*w2*/
 .work_B{
 	background:url("../images/Build_p0.png") no-repeat;
 	width: 300px;
@@ -61,7 +74,7 @@ section{
 }
 
 
-/*w2*/
+/*w3*/
 .work_c{
 	background: url("../images/Cultivating_p0.jpg") no-repeat;
 	width: 300px;
@@ -76,7 +89,7 @@ section{
 }
 
 
-/*w3*/
+/*w4*/
 .work_w{
 	background: url("../images/walking_p0.png") no-repeat;
 	width: 300px;
@@ -91,7 +104,7 @@ section{
 }
 
 
-/*w4*/
+/*w5*/
 .work_b{
 	background: url("../images/building_p0.png")no-repeat;
 	width: 300px;
@@ -106,7 +119,7 @@ section{
 }
 
 
-/*w5*/
+/*w6*/
 .work_m{
 	background: url("../images/mur_p0.png") no-repeat;
 	width: 300px;
@@ -121,7 +134,7 @@ section{
 }
 
 
-/*w6*/
+/*w7*/
 .work_s{
 	background: url("../images/Scattered_p0.png") no-repeat;
 	width: 300px;
@@ -135,7 +148,7 @@ section{
 	background-position: 100% 0px;
 }
 
-/*w7*/
+/*w8*/
 .work_sp{
 	background: url("../images/Spiral_p0.jpg") no-repeat;
 	width: 300px;
