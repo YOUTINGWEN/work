@@ -1,55 +1,300 @@
-import { useState } from "react";
+<!DOCTYPE html>
+<html>
 
-export default function Transcript() {
-  const transcript = [
-    { role: "與談人", text: "大家聽到這裡，其實應該也會有一些疑問吧？..." },
-    { role: "實驗人員", text: "我是桃園人，其實我原本有預期..." },
-    { role: "創作者", text: "其實這個作品我沒有覺得它跟紀錄片有直接關聯..." },
-    { role: "觀眾一", text: "我覺得在作品裡看到了一種考古的意圖..." },
-    { role: "實驗人員", text: "我們用分子生物的方法分析，發現有些菌減少..." },
-  ];
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+	
+	<!-- icon -->
+	<link rel="icon" sizes="192x192" href="images/logo3.ico">
+	<link rel="shortcut icon" href="images/logo3.ico" type="image/x-icon"/>
+	<link rel="apple-touch-icon" href="images/logo3.ico" type="image/x-icon"/>
 
-  // 取出所有角色
-  const roles = [...new Set(transcript.map(item => item.role))];
-  const [selectedRoles, setSelectedRoles] = useState(roles);
+    <title>Land Sampling Report</title>
 
-  const toggleRole = (role) => {
-    setSelectedRoles((prev) =>
-      prev.includes(role) ? prev.filter(r => r !== role) : [...prev, role]
-    );
-  };
+    <!-- Bootstrap CSS CDN -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+    <!-- Our Custom CSS -->
+    <link rel="stylesheet" href="css/nav_1.css">
+	<link rel="stylesheet" href="css/work_1.css">
 
-  return (
-    <div className="max-w-3xl mx-auto p-6">
-      {/* 篩選按鈕 */}
-      <div className="flex flex-wrap gap-2 mb-6">
-        {roles.map((role) => (
-          <button
-            key={role}
-            onClick={() => toggleRole(role)}
-            className={`px-4 py-2 rounded-full border transition ${
-              selectedRoles.includes(role)
-                ? "bg-indigo-600 text-white border-indigo-600"
-                : "bg-white text-gray-600 border-gray-300"
-            }`}
-          >
-            {role}
-          </button>
-        ))}
-      </div>
 
-      {/* 逐字稿內容 */}
-      <div className="space-y-4">
-        {transcript
-          .filter(item => selectedRoles.includes(item.role))
-          .map((item, i) => (
-            <div key={i} className="p-4 rounded-2xl shadow bg-white">
-              <p className="font-semibold text-indigo-600">{item.role}：</p>
-              <p className="text-gray-800 leading-relaxed">{item.text}</p>
+    <!-- Font Awesome JS -->
+    <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"></script>
+    <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
+<!-- 引入 Google Fonts -->
+	<link href="https://fonts.googleapis.com/css2?family=Lora:wght@400&display=swap" rel="stylesheet">
+<style>
+        body {
+            margin: 0;
+            font-family: 'Lora', serif; /* 襯線字體 */
+        }
+        p.copyright {
+            font-size: 10px;
+            color: #666;
+            text-align: center;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            padding: 3px 30px;
+            letter-spacing: 0.5px;
+	}
+    </style>
+</head>
+
+
+    <div class="wrapper">
+		
+         <!-- Sidebar  -->
+        <nav id="sidebar">
+			
+		<!-- logo  -->
+		<div class="sidebar-header">
+                <div class="logo">
+			<a href="HOME.html">
+			<img src="images/logo2.png" height="30px" alt="logo"/></a>
+		</div>
             </div>
-          ))}
-      </div>
-    </div>
-  );
-}
+			
+			
+		<!-- 選單0  -->
+           	<ul class="list-unstyled components">
+				
+				<div class="work">
+					<a href="ARTWORKS.html">
+					<img src="images/work_fake.png" width="75px" height="20px" alt=""/></a>
+				</div>
+				
+				
+				
+		<!-- 選單0  -->
+                <li class="active ">
 
+                    <a href="#workSubmenu" data-toggle="collapse" aria-expanded="false" class=" dropdown-toggle li_1">WoRKs</a>
+					
+                     <ul class="collapse list-unstyled" id="workSubmenu">
+						<li>
+                            <a class="li_2" href="work_Sampling.html">土地採樣報告<br>Land Sampling Report</a>
+                        </li>	
+						 
+		            	<li>
+                            <a class="li_2" href="work_Build.html">建造一間可以賣的房子<br>Building a house can be sold</a>
+                        </li>	
+						 
+		 				<li>
+                            <a class="li_2" href="work_cultivating.html">耕作一塊可以賣的地<br>Cultivating a piece of Land for Sale</a>
+                        </li>
+						
+                        <li>
+                            <a class="li_2" href="work_walking.html">交涉在差異間遊盪<br>Walking among the Differents</a>
+                        </li>
+			     
+                        <li>
+                            <a class="li_2" href="work_building.html">蓋幾面牆<br>Building some Walls</a>
+                        </li>
+						
+                        <li>
+                            <a class="li_2" href="work_mur.html">材料的書<br>A Book Full of Material Analogies</a>
+                        </li>
+                    </ul>
+                </li>
+			
+			
+				
+				
+				
+		<!-- data-pagenum1  -->
+                <li class="active">
+                    <a href="#exhibitionsubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle li_1">eXhiBItiONs</a>
+                    <ul class="collapse list-unstyled" id="exhibitionsubmenu">
+
+			  <li>
+                            <a class="li_2" href="exhibition_Build.html">展演:建造一間可以賣的房子</a>
+                        </li>
+			    
+			<li>
+                            <a class="li_2" href="exhibition_cultivating.html">展演:耕作一塊可以賣的地</a>
+                        </li>
+                      
+                        <li>
+                            <a class="li_2" href="exhibition_walking.html">展演:交涉在差異間遊盪</a>
+                        </li>
+                    </ul>
+                </li>
+				
+				
+		<!-- data-pagenum2  -->
+               <li><a class="li_1" href="designwork.html">dEsiGn WOrk</a></li>
+				
+				
+		<!-- data-pagenum3  -->
+               <li><a class="li_1" href="CV.html">cV</a></li>
+				
+		<!--data-pagenum4  -->
+               <li><a class="li_1" href="contact.html">coNTact</a></li>
+				
+            </ul>
+			
+      </nav>
+
+        <!-- Page Content Holder -->
+        <div id="content">
+
+            <nav class="navbar navbar-expand-lg ">
+                <div class="container-fluid">
+
+                    <button type="button" id="sidebarCollapse" class="navbar-btn">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+
+                </div>
+            </nav>
+		
+		
+<!--section-->
+<section>
+	
+	<div class="work-pic">
+		<img src="images/Sampling_p1.jpg" width="100%" alt="Sampling_p1"/>
+	</div>
+	
+	
+	<article>
+	<div class="introtext">
+		<h1>土地採樣報告Land Sampling Reportd</h1>
+		<p>三頻道/單頻道錄像｜三聲道｜立體雕塑 Three-channel / Single-channel Video | Sculpture</p>
+		<p>行為錄像、科學實驗</p>
+		<p>2025</p>
+	
+		
+			<p>我們要如何討論改變？<br>是不是應該足夠坦然才算是勇敢的人。<br>如果變化讓我感覺失去，可不可以不要改變。
+			<br>我透過採樣的行為消化這些即將到來的地景變化，
+			<br>也正在書寫自己的環境評估報告。
+			<br>今年從插秧到收成，我採了混入水泥的泥土；採了阿嬤的看法；用跑步採了出售中的風景。</p>
+		
+		
+		<p>How should we talk about change?Perhaps only by being candid enough can one be called brave.
+		<br>If change makes me feel a sense of loss, is it possible not to change?
+		<br>Through the act of sampling, I digest these impending transformations of the landscape,
+		<br>while also writing my own environmental report.
+		<br>This year, from transplanting rice seedlings to harvest, I sampled soil mixed with cement;
+		<br>I sampled my grandmother’s perspective;
+		<br>I sampled the scenery of land being sold, through running.
+		</p>
+
+		<p><u><a href="ScreeningTalk＿Sampling.html" style="color:gray" target="_blank">放映會／與談 &nbsp;Screening and Talk </a></u></p>
+
+
+			
+	
+	</div>
+	</article>
+	
+	
+	
+	
+	<div class="work-pic">
+
+		<style>
+ 		 .gallery {
+ 		   display: grid;
+		    grid-template-columns: 1fr 1fr; /* 兩欄 */
+		    gap: 10px; /* 間距 */
+		  }
+		  .gallery img {
+		    width: 100%; /* 填滿欄位 */
+		    height: auto;
+ 		   display: block;
+		  }
+
+		  /* 特例：大圖佔兩欄 */
+ 		 .gallery img.full {
+ 		   grid-column: span 2;
+		  }
+		</style>
+
+		<div class="gallery">
+		  <img src="images/Sampling_p2.jpg" alt="Sampling_p2"/>
+		  <img src="images/Sampling_p3.jpg" alt="Sampling_p3"/>
+		  <img src="images/Sampling_p4.jpg" alt="Sampling_p4"/>
+		  <img src="images/Sampling_p5.jpg" alt="Sampling_p5"/>
+		  <img src="images/Sampling_p6.jpg" class="full" alt="Sampling_p6"/>
+		  <img src="images/Sampling_p7.jpg" alt="Sampling_p7"/>
+		 <img src="images/Sampling_p8.jpg" alt="Sampling_p8"/>
+		</div>
+		
+	</div>
+
+	<article>
+	<div class="introtext">
+
+		
+			<p>攝影Cinematography｜游婷雯、蔡晉德<br>
+				剪輯Editing｜游婷雯<br>
+				文本Writing｜詹子嫻、吳靚瑩、游婷雯<br>
+				土壤微生物實驗Soil Microbial Experiment｜蔡晉德<br>
+				微生物資料定序Microbial Data Sequencing｜原資國際生物科技<br>
+				人聲錄製Voice Recording｜吳林阿茶、吳靚瑩、杜芮瑄、游婷雯<br>
+
+				特別感謝Special Thanks｜<br>
+				黃立慧、杜芮瑜、游佳臻、李承恩、蔡佳純、蔡松茂<br>
+  
+				贊助單位the sponsor by ｜文化部<br>
+				本計劃獲文化部扶植青年藝術發展補助</p>		
+	
+	</div>
+	</article>
+
+
+	
+	
+</section>
+			
+	 <p class="copyright">©2025 Ting-Wen You. All Rights Reserved.</p>
+		
+				
+	</div>
+</div>
+
+    <!-- jQuery CDN - Slim version (=without AJAX) -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <!-- Popper.JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
+    <!-- Bootstrap JS -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#sidebarCollapse').on('click', function () {
+                $('#sidebar').toggleClass('active');
+                $(this).toggleClass('active');
+            });
+        });
+    </script>
+
+	
+	<script>
+		$(document).ready(function(){
+	
+	var pn = $("body").data("pagenum");
+	$(".li_1").eq(pn) .addClass("nav_ch");
+	//增加點選頁面後的固定底線，記得body後面增加編號
+		})
+	
+	
+		$(document).ready(function(){
+	
+	var pn = $("body").data("worknum");
+	$(".li_2").eq(pn) .addClass("nav_w");
+	//增加點選頁面後的固定底線，記得body後面增加編號
+		})
+	</script>
+	
+	
+	
+</body>
+
+</html>
