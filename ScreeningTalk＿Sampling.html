@@ -156,97 +156,60 @@
 		
 <!--section-->
 <section>
-	
-	<div class="work-pic">
-		<img src="images/Sampling_p1.jpg" width="100%" alt="Sampling_p1"/>
-	</div>
-	
-	
-	<article>
-	<div class="introtext">
-		<h1>土地採樣報告Land Sampling Reportd</h1>
-		<p>三頻道/單頻道錄像｜三聲道｜立體雕塑 Three-channel / Single-channel Video | Sculpture</p>
-		<p>行為錄像、科學實驗</p>
-		<p>2025</p>
-	
-		
-			<p>我們要如何討論改變？<br>是不是應該足夠坦然才算是勇敢的人。<br>如果變化讓我感覺失去，可不可以不要改變。
-			<br>我透過採樣的行為消化這些即將到來的地景變化，
-			<br>也正在書寫自己的環境評估報告。
-			<br>今年從插秧到收成，我採了混入水泥的泥土；採了阿嬤的看法；用跑步採了出售中的風景。</p>
-		
-		
-		<p>How should we talk about change?Perhaps only by being candid enough can one be called brave.
-		<br>If change makes me feel a sense of loss, is it possible not to change?
-		<br>Through the act of sampling, I digest these impending transformations of the landscape,
-		<br>while also writing my own environmental report.
-		<br>This year, from transplanting rice seedlings to harvest, I sampled soil mixed with cement;
-		<br>I sampled my grandmother’s perspective;
-		<br>I sampled the scenery of land being sold, through running.
-		</p>
+import { useState } from "react";
 
-		<p><u><a href="ScreeningTalk＿Sampling.html" style="color:gray" target="_blank">放映會／與談 &nbsp;Screening and Talk </a></u></p>
+export default function Transcript() {
+  const transcript = [
+    { role: "與談人", text: "大家聽到這裡，其實應該也會有一些疑問吧？..." },
+    { role: "實驗人員", text: "我是桃園人，其實我原本有預期..." },
+    { role: "創作者", text: "其實這個作品我沒有覺得它跟紀錄片有直接關聯..." },
+    { role: "觀眾一", text: "我覺得在作品裡看到了一種考古的意圖..." },
+    { role: "實驗人員", text: "我們用分子生物的方法分析，發現有些菌減少..." },
+  ];
 
+  // 取出所有角色
+  const roles = [...new Set(transcript.map(item => item.role))];
+  const [selectedRoles, setSelectedRoles] = useState(roles);
 
-			
-	
-	</div>
-	</article>
-	
-	
-	
-	
-	<div class="work-pic">
+  const toggleRole = (role) => {
+    setSelectedRoles((prev) =>
+      prev.includes(role) ? prev.filter(r => r !== role) : [...prev, role]
+    );
+  };
 
-		<style>
- 		 .gallery {
- 		   display: grid;
-		    grid-template-columns: 1fr 1fr; /* 兩欄 */
-		    gap: 10px; /* 間距 */
-		  }
-		  .gallery img {
-		    width: 100%; /* 填滿欄位 */
-		    height: auto;
- 		   display: block;
-		  }
+  return (
+    <div className="max-w-3xl mx-auto p-6">
+      {/* 篩選按鈕 */}
+      <div className="flex flex-wrap gap-2 mb-6">
+        {roles.map((role) => (
+          <button
+            key={role}
+            onClick={() => toggleRole(role)}
+            className={`px-4 py-2 rounded-full border transition ${
+              selectedRoles.includes(role)
+                ? "bg-indigo-600 text-white border-indigo-600"
+                : "bg-white text-gray-600 border-gray-300"
+            }`}
+          >
+            {role}
+          </button>
+        ))}
+      </div>
 
-		  /* 特例：大圖佔兩欄 */
- 		 .gallery img.full {
- 		   grid-column: span 2;
-		  }
-		</style>
-
-		<div class="gallery">
-		  <img src="images/Sampling_p2.jpg" alt="Sampling_p2"/>
-		  <img src="images/Sampling_p3.jpg" alt="Sampling_p3"/>
-		  <img src="images/Sampling_p4.jpg" alt="Sampling_p4"/>
-		  <img src="images/Sampling_p5.jpg" alt="Sampling_p5"/>
-		  <img src="images/Sampling_p6.jpg" class="full" alt="Sampling_p6"/>
-		  <img src="images/Sampling_p7.jpg" alt="Sampling_p7"/>
-		 <img src="images/Sampling_p8.jpg" alt="Sampling_p8"/>
-		</div>
-		
-	</div>
-
-	<article>
-	<div class="introtext">
-
-		
-			<p>攝影Cinematography｜游婷雯、蔡晉德<br>
-				剪輯Editing｜游婷雯<br>
-				文本Writing｜詹子嫻、吳靚瑩、游婷雯<br>
-				土壤微生物實驗Soil Microbial Experiment｜蔡晉德<br>
-				微生物資料定序Microbial Data Sequencing｜原資國際生物科技<br>
-				人聲錄製Voice Recording｜吳林阿茶、吳靚瑩、杜芮瑄、游婷雯<br>
-
-				特別感謝Special Thanks｜<br>
-				黃立慧、杜芮瑜、游佳臻、李承恩、蔡佳純、蔡松茂<br>
-  
-				贊助單位the sponsor by ｜文化部<br>
-				本計劃獲文化部扶植青年藝術發展補助</p>		
-	
-	</div>
-	</article>
+      {/* 逐字稿內容 */}
+      <div className="space-y-4">
+        {transcript
+          .filter(item => selectedRoles.includes(item.role))
+          .map((item, i) => (
+            <div key={i} className="p-4 rounded-2xl shadow bg-white">
+              <p className="font-semibold text-indigo-600">{item.role}：</p>
+              <p className="text-gray-800 leading-relaxed">{item.text}</p>
+            </div>
+          ))}
+      </div>
+    </div>
+  );
+}
 
 
 	
