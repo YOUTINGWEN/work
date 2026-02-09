@@ -16,6 +16,13 @@
 	z-index: 2000;
 }
 
+.exhibition{
+	position: fixed;
+	top: 300px;
+	left: 10px;
+	z-index: 2000;
+}
+
 
 section{
 	position: relative;
