@@ -292,22 +292,21 @@
     </script>
 
 	
-	<script>
-		$(document).ready(function(){
-	
-	var pn = $("body").data("pagenum");
-	$(".li_1").eq(pn) .addClass("nav_ch");
-	//增加點選頁面後的固定底線，記得body後面增加編號
-		})
-	
-	
-		$(document).ready(function(){
-	
-	var pn = $("body").data("worknum");
-	$(".li_2").eq(pn) .addClass("nav_w");
-	//增加點選頁面後的固定底線，記得body後面增加編號
-		})
-	</script>
+<script>
+$(function () {
+  $('#sidebarCollapse').on('click', function () {
+    $('#sidebar').toggleClass('active');
+    $(this).toggleClass('active');
+  });
+
+  const pn = $('body').data('pagenum');
+  if (pn !== undefined) $('.li_1').eq(pn).addClass('nav_ch');
+
+  const wn = $('body').data('worknum');
+  if (wn !== undefined) $('.li_2').eq(wn).addClass('nav_w');
+});
+</script>
+
 	
 	
 	
