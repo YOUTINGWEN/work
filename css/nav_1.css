@@ -15,7 +15,13 @@
 
 
 body {
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Poppins', 'PingFang TC', 'Microsoft JhengHei', 'Noto Sans TC', sans-serif;
+}
+
+/* 選單固定使用黑體，不受各頁面內文字體設定影響 */
+#sidebar,
+#sidebar a {
+    font-family: 'Poppins', 'PingFang TC', 'Microsoft JhengHei', 'Noto Sans TC', sans-serif;
 }
 
 
