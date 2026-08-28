@@ -38,6 +38,7 @@ section{
 	left: 0px;
 	width: 100vw;
 	height: 100vh;
+	height: 100dvh; /* 手機瀏覽器網址列會影響 100vh 的實際高度，dvh 才是真正可視高度 */
 	z-index: -2000;
 	overflow: hidden;
 }
