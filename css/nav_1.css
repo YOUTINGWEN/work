@@ -35,6 +35,41 @@
     to { opacity: 1; transform: scale(1); }
 }
 
+/* ---------------------------------------------------
+    自訂游標：黑色正方形跟隨滑鼠，移到連結上時變成黑色圓形
+    只在滑鼠裝置（非觸控）上顯示，其餘裝置維持原生游標
+----------------------------------------------------- */
+#custom-cursor {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 20px;
+    height: 20px;
+    background: #000000;
+    border-radius: 0%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    z-index: 99999;
+    transition: left 0.1s linear, top 0.1s linear,
+        width 0.25s ease, height 0.25s ease, border-radius 0.25s ease;
+}
+
+@media (hover: hover) and (pointer: fine) {
+    #custom-cursor {
+        display: block;
+    }
+    body, a {
+        cursor: none;
+    }
+}
+
+#custom-cursor.cursor-hover {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+}
+
 ::-moz-selection{ /* Firefox */
     color:rgba(255, 255, 255, 1);
     background: #000000;
