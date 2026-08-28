@@ -3,6 +3,38 @@
 */
 @import "https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700";
 
+/* ---------------------------------------------------
+    頁面切換動畫（點選連結時的節奏感過場，取代直接跳換）
+    瀏覽器不支援時會自動退回原本的直接跳換，不影響功能
+----------------------------------------------------- */
+@view-transition {
+    navigation: auto;
+}
+
+::view-transition-old(root),
+::view-transition-new(root) {
+    animation-duration: 0.5s;
+    animation-timing-function: cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+::view-transition-old(root) {
+    animation-name: page-fade-out;
+}
+
+::view-transition-new(root) {
+    animation-name: page-fade-in;
+}
+
+@keyframes page-fade-out {
+    from { opacity: 1; transform: scale(1); }
+    to { opacity: 0; transform: scale(0.97); }
+}
+
+@keyframes page-fade-in {
+    from { opacity: 0; transform: scale(1.03); }
+    to { opacity: 1; transform: scale(1); }
+}
+
 ::-moz-selection{ /* Firefox */
     color:rgba(255, 255, 255, 1);
     background: #000000;
