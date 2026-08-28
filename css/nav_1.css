@@ -65,7 +65,8 @@
     width: 40px;
     height: 40px;
     border-radius: 50%;
-	background: #ADADAD;
+	background:	#3C3C3C;
+	opacity: 0.6; /* 0 = 全透明, 1 = 完全不透明 */
 }
 
 ::-moz-selection{ /* Firefox */
