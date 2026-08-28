@@ -59,9 +59,6 @@
     #custom-cursor {
         display: block;
     }
-    body, a {
-        cursor: none;
-    }
 }
 
 #custom-cursor.cursor-hover {
