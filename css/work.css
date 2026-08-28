@@ -56,9 +56,9 @@ section{
 .box p{
 	font-weight:lighter;
 	font-size:12px;
-	line-height:1.0em;
+	line-height:0.9em;
 	margin:0;
-	text-align: justify; /*左右對齊*/
+	text-align: right;
 	color:#868686;
 }
 
