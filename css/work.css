@@ -258,6 +258,19 @@ section{
 	padding: 0px 10px 0px 60px;
 	grid-template-columns: repeat(2, 1fr);
 	}
+
+	/*作品格線上下交錯*/
+	.artworks-grid{
+		gap: 60px 20px;
+	}
+
+	.artworks-grid > [class*="col-"]:nth-child(odd){
+		transform: translateY(-20px);
+	}
+
+	.artworks-grid > [class*="col-"]:nth-child(even){
+		transform: translateY(20px);
+	}
 }
 
 
@@ -270,6 +283,19 @@ section{
 	width: 100%;
 	padding: 0px 10px 0px 70px;
 	grid-template-columns: repeat(3, 1fr);
+	}
+
+	/*作品格線上下交錯*/
+	.artworks-grid{
+		gap: 60px 20px;
+	}
+
+	.artworks-grid > [class*="col-"]:nth-child(odd){
+		transform: translateY(-20px);
+	}
+
+	.artworks-grid > [class*="col-"]:nth-child(even){
+		transform: translateY(20px);
 	}
 }
 
