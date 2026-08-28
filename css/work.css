@@ -28,9 +28,16 @@ section{
 	position: relative;
 	width: 100%;
 	padding: 0px 10px 0px 30px;
-	
+	display: grid;
+	grid-template-columns: 1fr;
+	gap: 30px 20px;
 }
 
+[class*="col-"]{
+	float: none;
+	width: auto;
+	padding: 0;
+}
 
 .box{
 	position: relative;
@@ -55,8 +62,8 @@ section{
 /*w1*/
 .work_concrete{
 	background:url("../images/concrete_p0.jpg") no-repeat;
-	width: 300px;
-	height: 170px;
+	width: 100%;
+	aspect-ratio: 300 / 170;
 	background-size: 200%;
 }
 
@@ -69,8 +76,8 @@ section{
 /*w2*/
 .work_Sampling{
 	background:url("../images/Sampling_p0.jpg") no-repeat;
-	width: 300px;
-	height: 170px;
+	width: 100%;
+	aspect-ratio: 300 / 170;
 	background-size: 200%;
 }
 
@@ -83,8 +90,8 @@ section{
 /*w3*/
 .work_B{
 	background:url("../images/Build_p0.png") no-repeat;
-	width: 300px;
-	height: 170px;
+	width: 100%;
+	aspect-ratio: 300 / 170;
 	background-size: 200%;
 }
 
@@ -98,8 +105,8 @@ section{
 /*w4*/
 .work_c{
 	background: url("../images/Cultivating_p0.jpg") no-repeat;
-	width: 300px;
-	height: 170px;
+	width: 100%;
+	aspect-ratio: 300 / 170;
 	background-size: 200%;
 }
 
@@ -113,8 +120,8 @@ section{
 /*w5*/
 .work_w{
 	background: url("../images/walking_p0.png") no-repeat;
-	width: 300px;
-	height: 170px;
+	width: 100%;
+	aspect-ratio: 300 / 170;
 	background-size: 200%;
 }
 
@@ -128,8 +135,8 @@ section{
 /*w6*/
 .work_b{
 	background: url("../images/building_p0.png")no-repeat;
-	width: 300px;
-	height: 170px;
+	width: 100%;
+	aspect-ratio: 300 / 170;
 	background-size: 200%;
 }
 
@@ -143,8 +150,8 @@ section{
 /*w7*/
 .work_m{
 	background: url("../images/mur_p0.png") no-repeat;
-	width: 300px;
-	height: 170px;
+	width: 100%;
+	aspect-ratio: 300 / 170;
 	background-size: 200%;
 }
 
@@ -158,8 +165,8 @@ section{
 /*w8*/
 .work_s{
 	background: url("../images/Scattered_p0.png") no-repeat;
-	width: 300px;
-	height: 170px;
+	width: 100%;
+	aspect-ratio: 300 / 170;
 	background-size: 200%;
 }
 
@@ -172,8 +179,8 @@ section{
 /*w9*/
 .work_sp{
 	background: url("../images/Spiral_p0.jpg") no-repeat;
-	width: 300px;
-	height: 170px;
+	width: 100%;
+	aspect-ratio: 300 / 170;
 	background-size: 200%;
 }
 
@@ -188,8 +195,8 @@ section{
 /*exhibitions listing*/
 .exhibit_selling{
 	background: url("../images/exhibition_Selling_p1.jpg") no-repeat;
-	width: 300px;
-	height: 170px;
+	width: 100%;
+	aspect-ratio: 300 / 170;
 	background-size: 200%;
 }
 
@@ -201,8 +208,8 @@ section{
 
 .exhibit_build{
 	background: url("../images/exhibition_Build_p1.png") no-repeat;
-	width: 300px;
-	height: 170px;
+	width: 100%;
+	aspect-ratio: 300 / 170;
 	background-size: 200%;
 }
 
@@ -214,8 +221,8 @@ section{
 
 .exhibit_cultivating{
 	background: url("../images/exhibition_cultivating_p1.jpg") no-repeat;
-	width: 300px;
-	height: 170px;
+	width: 100%;
+	aspect-ratio: 300 / 170;
 	background-size: 200%;
 }
 
@@ -227,8 +234,8 @@ section{
 
 .exhibit_walking{
 	background: url("../images/exhibition_walking_p1.jpg") no-repeat;
-	width: 300px;
-	height: 170px;
+	width: 100%;
+	aspect-ratio: 300 / 170;
 	background-size: 200%;
 }
 
@@ -244,11 +251,12 @@ section{
 
 
 /*中尺寸的欄位*/
-@media only screen and (max-width: 1023px) and (min-width: 700px){	
+@media only screen and (max-width: 1023px) and (min-width: 700px){
 	section{
 	position: relative;
 	width: 100%;
 	padding: 0px 10px 0px 60px;
+	grid-template-columns: repeat(2, 1fr);
 	}
 }
 
@@ -261,7 +269,8 @@ section{
 	position: relative;
 	width: 100%;
 	padding: 0px 10px 0px 70px;
-	}	
+	grid-template-columns: repeat(3, 1fr);
+	}
 }
 
 
