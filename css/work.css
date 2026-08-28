@@ -46,7 +46,9 @@ section{
 .box h1{
 	font-weight:500;
 	font-size:12px;
-	line-height:3em;
+	line-height:1.4em;
+	margin-top:10px;
+	margin-bottom:4px;
 	color:#7A7A7A;
 }
 
