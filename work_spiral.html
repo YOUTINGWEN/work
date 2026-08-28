@@ -1,1 +1,225 @@
+<!DOCTYPE html>
+<html>
 
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+		<!-- icon -->
+	<link rel="icon" sizes="192x192" href="images/logo3.ico">
+	<link rel="shortcut icon" href="images/logo3.ico" type="image/x-icon"/>
+	<link rel="apple-touch-icon" href="images/logo3.ico" type="image/x-icon"/>
+
+    <title>The Spiral Gateway of Life</title>
+
+    <!-- Bootstrap CSS CDN -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+    <!-- Our Custom CSS -->
+    <link rel="stylesheet" href="css/nav_1.css">
+	<link rel="stylesheet" href="css/work_2.css">
+
+
+    <!-- Font Awesome JS -->
+    <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"></script>
+    <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
+<!-- 引入 Google Fonts -->
+	<link href="https://fonts.googleapis.com/css2?family=Lora:wght@400&display=swap" rel="stylesheet">
+<style>
+        body {
+            margin: 0;
+            font-family: 'Lora', serif; /* 襯線字體 */
+        }
+        p.copyright {
+            font-size: 10px;
+            color: #666;
+            text-align: center;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            padding: 3px 30px;
+            letter-spacing: 0.5px;
+	}
+    </style>
+</head>
+
+<body data-pagenum="0">
+
+    <div class="wrapper">
+
+         <!-- Sidebar  -->
+        <nav id="sidebar">
+
+	<!-- logo  -->
+            <div class="sidebar-header">
+                <div class="logo">
+			<a href="HOME.html">
+			<img src="images/logo2.png" height="30px" alt="logo"/></a>
+		</div>
+            </div>
+
+
+		<!-- 選單0  -->
+            <ul class="list-unstyled components">
+
+				<div class="work">
+					<a href="ARTWORKS.html">
+					<img src="images/work_fake.png" width="75px" height="20px" alt=""/></a>
+				</div>
+
+
+
+		<!-- 選單0  -->
+                <li class="active ">
+
+                    <a href="#workSubmenu" data-toggle="collapse" aria-expanded="false" class=" dropdown-toggle li_1">WORKs</a>
+
+                     <ul class="collapse list-unstyled" id="workSubmenu">
+						<li>
+                            <a class="li_2" href="work_concrete.html">混凝土與鷹架<br>Concrete and Scaffolding</a>
+                        </li>
+
+						<li>
+                            <a class="li_2" href="work_Sampling.html">土地採樣報告<br>Land Sampling Report</a>
+                        </li>
+
+			            	 <li>
+                            <a class="li_2" href="work_Build.html">建造一間可以賣的房子<br>Building a house can be sold</a>
+                        </li>
+
+			 			   <li>
+                            <a class="li_2" href="work_cultivating.html">耕作一塊可以賣的地<br>Cultivating a piece of Land for Sale</a>
+                        </li>
+
+                        <li>
+                            <a class="li_2" href="work_walking.html">交涉在差異間遊盪<br>Walking among the Differents</a>
+                        </li>
+
+                        <li>
+                            <a class="li_2" href="work_building.html">蓋幾面牆<br>Building some Walls</a>
+                        </li>
+
+                        <li>
+                            <a class="li_2" href="work_mur.html">材料的書<br>A Book Full of Material Analogies</a>
+                        </li>
+                    </ul>
+                </li>
+
+
+
+
+		<!-- data-pagenum1  -->
+                <li class="active">
+                    <a href="#exhibitionsubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle li_1">EXHIBITIONs</a>
+                    <ul class="collapse list-unstyled" id="exhibitionsubmenu">
+
+                        <li>
+                            <a class="li_2" href="exhibition_SellingLandscape.html">個展:出售地景</a>
+                        </li>
+
+                        <li>
+                            <a class="li_2" href="exhibition_Build.html">聯展:建造一間可以賣的房子</a>
+                        </li>
+
+            		      	<li>
+                            <a class="li_2" href="exhibition_cultivating.html">聯展:耕作一塊可以賣的地</a>
+                        </li>
+
+                        <li>
+                            <a class="li_2" href="exhibition_walking.html">聯展:交涉在差異間遊盪</a>
+                        </li>
+
+                    </ul>
+                </li>
+
+		<!-- 選單2  -->
+               <li><a class="li_1" href="designwork.html">DESIGN WORKs</a></li>
+
+		<!-- 選單3  -->
+               <li><a class="li_1" href="CV.html">CV</a></li>
+
+		<!-- 選單4  -->
+               <li><a class="li_1" href="contact.html">contact</a></li>
+
+            </ul>
+
+      </nav>
+
+        <!-- Page Content Holder -->
+        <div id="content">
+
+            <nav class="navbar navbar-expand-lg ">
+                <div class="container-fluid">
+
+                    <button type="button" id="sidebarCollapse" class="navbar-btn" aria-label="切換選單 Toggle navigation">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+
+                </div>
+            </nav>
+
+            <!--section-->
+<section>
+
+	<div class="work-pic">
+		<img src="images/Spiral_p0.jpg" width="100%" alt="旋繞生命之門 The Spiral Gateway of Life"/>
+	</div>
+
+
+	<article>
+	<div class="introtext">
+			<h1>旋繞生命之門 The Spiral Gateway of Life</h1>
+			<p>螺絲廢棄物、螺絲、廢棄木材、環保紙漿、環氧樹酯</p>
+			<p>2024</p>
+			</div>
+			</article>
+
+</section>
+
+
+	</div>
+</div>
+	 <p class="copyright">©2025 Ting-Wen You. All Rights Reserved.</p>
+
+
+    <!-- jQuery CDN - Slim version (=without AJAX) -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <!-- Popper.JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
+    <!-- Bootstrap JS -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#sidebarCollapse').on('click', function () {
+                $('#sidebar').toggleClass('active');
+                $(this).toggleClass('active');
+            });
+        });
+    </script>
+
+
+	<script>
+		$(document).ready(function(){
+
+	var pn = $("body").data("pagenum");
+	$(".li_1").eq(pn) .addClass("nav_ch");
+	//增加點選頁面後的固定底線，記得body後面增加編號
+		})
+
+
+		$(document).ready(function(){
+
+	var pn = $("body").data("worknum");
+	$(".li_2").eq(pn) .addClass("nav_w");
+	//增加點選頁面後的固定底線，記得body後面增加編號
+		})
+	</script>
+
+
+
+</body>
+
+</html>

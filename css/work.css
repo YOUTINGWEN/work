@@ -185,6 +185,60 @@ section{
 
 
 
+/*exhibitions listing*/
+.exhibit_selling{
+	background: url("../images/exhibition_Selling_p1.jpg") no-repeat;
+	width: 300px;
+	height: 170px;
+	background-size: 200%;
+}
+
+.exhibit_selling:hover{
+	background: url("../images/exhibition_Selling_p1.jpg") no-repeat;
+	background-size: 200%;
+	background-position: 100% 0px;
+}
+
+.exhibit_build{
+	background: url("../images/exhibition_Build_p1.png") no-repeat;
+	width: 300px;
+	height: 170px;
+	background-size: 200%;
+}
+
+.exhibit_build:hover{
+	background: url("../images/exhibition_Build_p1.png") no-repeat;
+	background-size: 200%;
+	background-position: 100% 0px;
+}
+
+.exhibit_cultivating{
+	background: url("../images/exhibition_cultivating_p1.jpg") no-repeat;
+	width: 300px;
+	height: 170px;
+	background-size: 200%;
+}
+
+.exhibit_cultivating:hover{
+	background: url("../images/exhibition_cultivating_p1.jpg") no-repeat;
+	background-size: 200%;
+	background-position: 100% 0px;
+}
+
+.exhibit_walking{
+	background: url("../images/exhibition_walking_p1.jpg") no-repeat;
+	width: 300px;
+	height: 170px;
+	background-size: 200%;
+}
+
+.exhibit_walking:hover{
+	background: url("../images/exhibition_walking_p1.jpg") no-repeat;
+	background-size: 200%;
+	background-position: 100% 0px;
+}
+
+
 /*--------------------RWD-----------------------*/
 
 
