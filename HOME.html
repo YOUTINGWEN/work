@@ -80,10 +80,17 @@ is_home: true
 			<section>
 				
 			<div class="v_1">
-			<video width="100%" autoplay loop muted playsinline>
-				<source src="images/frontpage.mp4">
+			<video id="hero-video" width="100%" autoplay loop muted playsinline preload="auto">
+				<source src="images/frontpage.mp4" type="video/mp4">
 			</video>
 			</div>
+
+			<!-- 部分手機瀏覽器（尤其是行動網路省流量模式）不會單靠 autoplay 屬性播放
+			     大檔案影片，這裡用 JS 主動呼叫 play() 做為備援。用外部檔案 + async
+			     載入：不卡住 HTML 解析，也不像 defer 要等整份文件解析完才執行——
+			     一旦這支小檔案本身載入完成就會立刻執行，不受後面 jQuery/Bootstrap
+			     等外部 CDN 載入速度影響，手機上網路較慢時也能盡快嘗試播放影片。 -->
+			<script async src="js/hero-video-autoplay.js"></script>
 
 			</section>
 
@@ -108,7 +115,7 @@ is_home: true
         });
     </script>
 
-	
+
 	<script>
 		$(document).ready(function(){
 	
