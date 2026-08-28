@@ -57,6 +57,7 @@ section{
 	font-weight:lighter;
 	font-size:12px;
 	line-height:1.0em;
+	margin:0;
 	text-align: justify; /*左右對齊*/
 	color:#868686;
 }
