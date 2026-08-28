@@ -1,3 +1,5 @@
+---
+---
 <!DOCTYPE html>
 <html>
 
@@ -47,103 +49,7 @@
 
     <div class="wrapper">
 		
-         <!-- Sidebar  -->
-        <nav id="sidebar">
-			
-	<!-- logo  -->
-            <div class="sidebar-header">
-                <div class="logo">
-			<a href="HOME.html">
-			<img src="images/logo2.png" height="30px" alt="logo"/></a>
-		</div>
-            </div>
-			
-			
-		<!-- 選單0  -->
-            <ul class="list-unstyled components">
-				
-				<div class="work">
-					<a href="ARTWORKS.html">
-					<img src="images/work_fake.png" width="75px" height="20px" alt=""/></a>
-				</div>
-				
-				
-		<!-- 選單0  -->
-                <li class="active ">
-
-                    <a href="#workSubmenu" data-toggle="collapse" aria-expanded="false" class=" dropdown-toggle li_1">WORKs</a>
-					
-                     <ul class="collapse list-unstyled" id="workSubmenu">
-						<li>
-                            <a class="li_2" href="work_concrete.html">混凝土與鷹架<br>Concrete and Scaffolding</a>
-                        </li>	
-                       
-						<li>
-                            <a class="li_2" href="work_Sampling.html">土地採樣報告<br>Land Sampling Report</a>
-                        </li>	
-						 
-		            	 <li>
-                            <a class="li_2" href="work_Build.html">建造一間可以賣的房子<br>Building a house can be sold</a>
-                        </li>	
-						 
-		 			   <li>
-                            <a class="li_2" href="work_cultivating.html">耕作一塊可以賣的地<br>Cultivating a piece of Land for Sale</a>
-                        </li>
-						
-                        <li>
-                            <a class="li_2" href="work_walking.html">交涉在差異間遊盪<br>Walking among the Differents</a>
-                        </li>
-			     
-                        <li>
-                            <a class="li_2" href="work_building.html">蓋幾面牆<br>Building some Walls</a>
-                        </li>
-						
-                        <li>
-                            <a class="li_2" href="work_mur.html">材料的書<br>A Book Full of Material Analogies</a>
-                        </li>
-                    </ul>
-                </li>
-			
-			
-								
-		<!-- data-pagenum1  -->
-                <li class="active">
-                    <a href="#exhibitionsubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle li_1">EXHIBITIONs</a>
-                    <ul class="collapse list-unstyled" id="exhibitionsubmenu">
-
-                        <li>
-                            <a class="li_2" href="exhibition_SellingLandscape.html">個展:出售地景</a>
-                        </li>
-                    	
-                        <li>
-                            <a class="li_2" href="exhibition_Build.html">聯展:建造一間可以賣的房子</a>
-                        </li>
-
-            		      	<li>
-                            <a class="li_2" href="exhibition_cultivating.html">聯展:耕作一塊可以賣的地</a>
-                        </li>
-                      
-                        <li>
-                            <a class="li_2" href="exhibition_walking.html">聯展:交涉在差異間遊盪</a>
-                        </li>
-                      
-                    </ul>
-                </li>
-				
-				
-		<!-- data-pagenum2  -->
-               <li><a class="li_1" href="designwork.html">DESIGN WORKs</a></li>
-				
-				
-		<!-- data-pagenum3  -->
-               <li><a class="li_1" href="CV.html">CV</a></li>
-				
-		<!--data-pagenum4  -->
-               <li><a class="li_1" href="contact.html">contact</a></li>
-				
-            </ul>
-			
-      </nav>
+        {% include nav.html %}
 
         <!-- Page Content Holder -->
         <div id="content">
