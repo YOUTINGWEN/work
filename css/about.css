@@ -20,6 +20,13 @@ section{
 	padding: 0px 100px ;
 }
 
+/* 手機螢幕較窄，左右各留 100px 會讓每行文字被擠得很短，改用較小的留白 */
+@media only screen and (max-width: 700px) {
+	section{
+		padding: 0px 20px;
+	}
+}
+
 article{
 	margin:auto;
 }
