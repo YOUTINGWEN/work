@@ -162,15 +162,9 @@ section{
 	50% { background-position: 100% 0px; }
 }
 
-.work_concrete:hover,
-.work_Sampling:hover,
-.work_B:hover,
-.work_c:hover,
-.work_w:hover,
-.work_b:hover,
-.work_m:hover,
-.work_s:hover,
-.work_sp:hover{
+/* 用 class 開頭比對，日後在 ARTWORKS.html 新增作品縮圖（class 開頭是
+   work_）都會自動套用，不用再手動一個一個把新的 class 名稱加進來 */
+.artworks-grid [class^="work_"]:hover{
 	animation: work-thumb-slide 2.6s ease-in-out infinite;
 }
 
