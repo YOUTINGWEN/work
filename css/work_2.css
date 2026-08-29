@@ -66,6 +66,14 @@ article{
 
 /*===============rwd details===============*/
 
+/* 手機螢幕較窄，article 固定 80% 寬會讓裡面的文字、圖片都被擠得很窄。
+   放寬 article 也會一併放寬裡面的 .introtext，字級完全沒有更動。 */
+@media only screen and (max-width: 700px) {
+	article{
+		width: 100%;
+	}
+}
+
 /* For tablets */
 
 @media only screen and (min-width: 768px) {
