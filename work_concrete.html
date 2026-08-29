@@ -34,8 +34,12 @@
         }
 
 
+        /* 圖片放在 .work-pic（max-width:1000px、置中）裡；影片原本放在沒有 max-width
+           的 .work-mov 裡，螢幕寬度超過 1000px 時會被撐到跟 section 一樣寬，導致跟圖片
+           對不齊（用 padding 沒辦法真正解決）。這裡讓 .work-mov 比照 .work-pic 加上
+           同樣的 max-width。 */
         .work-mov {
-            padding: 0 20px;
+            max-width: 1000px;
         }
 
         p.copyright {
@@ -135,7 +139,7 @@
 	</div>
 
 	<div class="work-mov">
-	<iframe src="https://www.youtube.com/embed/stMncAChTyc" style="height: 500px; width: 97%" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+	<iframe src="https://www.youtube.com/embed/stMncAChTyc" style="height: 500px; width: 100%" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 	</div>	
 
 	
