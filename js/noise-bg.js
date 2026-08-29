@@ -9,9 +9,9 @@
     var BASE_DENSITY = 0.025;   // 靜止時的基礎雜訊密度（佔畫布像素比例）
     var EXTRA_DENSITY = 0.04;   // 滑鼠擾動時，額外增加的雜訊密度
     var BASE_INTERVAL = 90;     // 靜止時的重繪間隔（毫秒）／頻率較低
-    var MIN_INTERVAL = 16;      // 擾動最大時的重繪間隔／頻率較高（約 60fps）
-    var SIGMA_ALONG = 60;       // 沿移動方向擴散的基礎標準差（越大範圍越廣、邊界越柔和）
-    var SIGMA_PERP = 38;        // 垂直移動方向擴散的基礎標準差
+    var MIN_INTERVAL = 30;      // 擾動最大時的重繪間隔／頻率較高（約 60fps）
+    var SIGMA_ALONG = 43;       // 沿移動方向擴散的基礎標準差（越大範圍越廣、邊界越柔和）
+    var SIGMA_PERP = 27;        // 垂直移動方向擴散的基礎標準差
 
     // 常態分布（Box-Muller），讓密度隨距離平滑衰減，不會有明確的邊界
     function randNormal() {
@@ -73,7 +73,7 @@
     function draw(now) {
         requestAnimationFrame(draw);
 
-        disturbance *= 0.94; // 每幀衰減，讓擾動效果自然消退
+        disturbance *= 0.95; // 每幀衰減，讓擾動效果自然消退
         if (disturbance < 0.002) { disturbance = 0; }
 
         var interval = BASE_INTERVAL - (BASE_INTERVAL - MIN_INTERVAL) * disturbance;
