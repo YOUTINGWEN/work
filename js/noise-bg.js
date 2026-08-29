@@ -7,10 +7,18 @@
     var DOT = [236, 236, 236];  // 比背景更淺的灰色雜訊點
 
     var BASE_DENSITY = 0.025;   // 靜止時的基礎雜訊密度（佔畫布像素比例）
-    var EXTRA_DENSITY = 0.05;   // 滑鼠擾動時，額外增加的雜訊密度
+    var EXTRA_DENSITY = 0.04;   // 滑鼠擾動時，額外增加的雜訊密度
     var BASE_INTERVAL = 90;     // 靜止時的重繪間隔（毫秒）／頻率較低
     var MIN_INTERVAL = 30;      // 擾動最大時的重繪間隔／頻率較高（約 60fps）
-    var RADIUS = 100;           // 滑鼠周圍受影響的半徑（px）
+    var SIGMA_ALONG = 43;       // 沿移動方向擴散的基礎標準差（越大範圍越廣、邊界越柔和）
+    var SIGMA_PERP = 27;        // 垂直移動方向擴散的基礎標準差
+
+    // 常態分布（Box-Muller），讓密度隨距離平滑衰減，不會有明確的邊界
+    function randNormal() {
+        var u = Math.random() || 1e-6;
+        var v = Math.random();
+        return Math.sqrt(-2 * Math.log(u)) * Math.cos(2 * Math.PI * v);
+    }
 
     var width = 0, height = 0;
     var template = null; // 預先填滿背景色的樣板，每幀重繪時用來快速重置畫布
@@ -36,6 +44,10 @@
     var lastMouseX = -9999, lastMouseY = -9999;
     var disturbance = 0; // 0~1，隨時間自然衰減
 
+    var velX = 0, velY = 0;               // 平滑後的滑鼠移動方向向量
+    var dirAngle = 0;                     // 擴散形狀目前使用的方向角，移動時才更新
+    var wobblePhase = Math.random() * Math.PI * 2; // 讓方向持續小幅波動，避免固定成一條直線
+
     window.addEventListener('mousemove', function (e) {
         mouseX = e.clientX;
         mouseY = e.clientY;
@@ -44,6 +56,8 @@
             var dy = mouseY - lastMouseY;
             var dist = Math.sqrt(dx * dx + dy * dy);
             disturbance = Math.min(1, disturbance + dist * 0.01);
+            velX = velX * 0.75 + dx * 0.25;
+            velY = velY * 0.75 + dy * 0.25;
         }
         lastMouseX = mouseX;
         lastMouseY = mouseY;
@@ -83,12 +97,23 @@
         }
 
         if (disturbance > 0 && mouseX > -9999) {
+            var speed = Math.sqrt(velX * velX + velY * velY);
+            if (speed > 0.4) { dirAngle = Math.atan2(velY, velX); }
+
+            wobblePhase += 0.05;
+            var wobble = Math.sin(wobblePhase) * (Math.PI / 9); // 方向約 ±20 度持續波動
+            var angle = dirAngle + wobble;
+            var elong = 1 + disturbance * 1.6 + Math.min(1, speed * 0.05); // 移動越快，沿方向拉得越長
+            var sigmaAlong = SIGMA_ALONG * elong;
+            var sigmaPerp = SIGMA_PERP / Math.sqrt(elong);
+            var cosA = Math.cos(angle), sinA = Math.sin(angle);
+
             var extraCount = (area * EXTRA_DENSITY * disturbance) | 0;
             for (i = 0; i < extraCount; i++) {
-                var angle = Math.random() * Math.PI * 2;
-                var r = Math.random() * RADIUS;
-                x = (mouseX + Math.cos(angle) * r) | 0;
-                y = (mouseY + Math.sin(angle) * r) | 0;
+                var along = randNormal() * sigmaAlong;
+                var perp = randNormal() * sigmaPerp;
+                x = (mouseX + along * cosA - perp * sinA) | 0;
+                y = (mouseY + along * sinA + perp * cosA) | 0;
                 if (x < 0 || x >= width || y < 0 || y >= height) { continue; }
                 idx = (y * width + x) * 4;
                 data[idx] = DOT[0];
