@@ -4,7 +4,8 @@
     var ctx = canvas.getContext('2d', { alpha: false });
 
     var BG = [217, 217, 217];   // #d9d9d9 背景色
-    var DOT = [236, 236, 236];  // 比背景更淺的灰色雜訊點
+    var DOT = [236, 236, 236];  // 靜止時基礎雜訊點，比背景更淺的灰色
+    var TRAIL_DOT = [248, 248, 248]; // 尾巴雜訊點用更亮一點的灰色，加強流動感的能見度
 
     var BASE_DENSITY = 0.025;   // 靜止時的基礎雜訊密度（佔畫布像素比例）
     var BASE_INTERVAL = 90;     // 靜止時的重繪間隔（毫秒）／頻率較低
@@ -13,12 +14,12 @@
     // 尾翼軌跡：滑鼠移動時沿路徑生成節點，每個節點會像液體一樣隨時間擴散、變淡、
     // 帶著慣性殘留速度繼續滑一小段，並垂直於行進方向左右擺動，形成拖曳的尾巴
     var NODE_SPACING = 14;      // 每隔多少 px 生成一個新節點（決定尾巴的密度／連續性）
-    var NODE_LIFE = 750;        // 節點壽命（毫秒），越長尾巴越長
+    var NODE_LIFE = 1100;       // 節點壽命（毫秒），越長尾巴越長越明顯
     var NODE_SIGMA_START = 14;  // 節點剛生成時的擴散半徑
-    var NODE_SIGMA_END = 46;    // 節點消散前的擴散半徑（像液體逐漸散開）
-    var NODE_DOT_BASE = 70;     // 節點最新鮮時，每幀繪製的雜訊點數量上限
+    var NODE_SIGMA_END = 52;    // 節點消散前的擴散半徑（像液體逐漸散開）
+    var NODE_DOT_BASE = 130;    // 節點最新鮮時，每幀繪製的雜訊點數量上限
     var WAVE_FREQ = 0.012;      // 尾翼擺動的頻率
-    var WAVE_AMP = 26;          // 尾翼擺動的最大振幅（px）
+    var WAVE_AMP = 32;          // 尾翼擺動的最大振幅（px）
     var DRIFT_SPEED_PX = 3;     // 生成瞬間的殘留速度（px／每 16ms 幀），與生成時的方向一致，
                                  // 用固定值而非滑鼠事件的原始位移，避免滑鼠移動事件間距忽大
                                  // 忽小時，節點暴衝飛出原本的路徑
@@ -152,7 +153,7 @@
             var py = node.y + Math.cos(node.angle) * wave;
 
             var sigma = NODE_SIGMA_START + (NODE_SIGMA_END - NODE_SIGMA_START) * t;
-            var intensity = 1 - t; // 越老越淡
+            var intensity = Math.pow(1 - t, 0.6); // 前段維持較高強度，接近壽命尾聲才快速變淡
             var dotCount = (NODE_DOT_BASE * intensity) | 0;
 
             for (i = 0; i < dotCount; i++) {
@@ -160,9 +161,9 @@
                 y = (py + randNormal() * sigma) | 0;
                 if (x < 0 || x >= width || y < 0 || y >= height) { continue; }
                 idx = (y * width + x) * 4;
-                data[idx] = DOT[0];
-                data[idx + 1] = DOT[1];
-                data[idx + 2] = DOT[2];
+                data[idx] = TRAIL_DOT[0];
+                data[idx + 1] = TRAIL_DOT[1];
+                data[idx + 2] = TRAIL_DOT[2];
             }
         }
 
