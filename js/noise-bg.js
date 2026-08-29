@@ -7,13 +7,25 @@
     var DOT = [236, 236, 236];  // 比背景更淺的灰色雜訊點
 
     var BASE_DENSITY = 0.025;   // 靜止時的基礎雜訊密度（佔畫布像素比例）
-    var EXTRA_DENSITY = 0.04;   // 滑鼠擾動時，額外增加的雜訊密度
     var BASE_INTERVAL = 90;     // 靜止時的重繪間隔（毫秒）／頻率較低
-    var MIN_INTERVAL = 30;      // 擾動最大時的重繪間隔／頻率較高（約 60fps）
-    var SIGMA_ALONG = 43;       // 沿移動方向擴散的基礎標準差（越大範圍越廣、邊界越柔和）
-    var SIGMA_PERP = 27;        // 垂直移動方向擴散的基礎標準差
+    var MIN_INTERVAL = 30;      // 有尾巴節點存在時的重繪間隔／頻率較高
 
-    // 常態分布（Box-Muller），讓密度隨距離平滑衰減，不會有明確的邊界
+    // 尾翼軌跡：滑鼠移動時沿路徑生成節點，每個節點會像液體一樣隨時間擴散、變淡、
+    // 帶著慣性殘留速度繼續滑一小段，並垂直於行進方向左右擺動，形成拖曳的尾巴
+    var NODE_SPACING = 14;      // 每隔多少 px 生成一個新節點（決定尾巴的密度／連續性）
+    var NODE_LIFE = 750;        // 節點壽命（毫秒），越長尾巴越長
+    var NODE_SIGMA_START = 14;  // 節點剛生成時的擴散半徑
+    var NODE_SIGMA_END = 46;    // 節點消散前的擴散半徑（像液體逐漸散開）
+    var NODE_DOT_BASE = 70;     // 節點最新鮮時，每幀繪製的雜訊點數量上限
+    var WAVE_FREQ = 0.012;      // 尾翼擺動的頻率
+    var WAVE_AMP = 26;          // 尾翼擺動的最大振幅（px）
+    var DRIFT_SPEED_PX = 3;     // 生成瞬間的殘留速度（px／每 16ms 幀），與生成時的方向一致，
+                                 // 用固定值而非滑鼠事件的原始位移，避免滑鼠移動事件間距忽大
+                                 // 忽小時，節點暴衝飛出原本的路徑
+    var DRIFT_DECAY = 0.9;      // 殘留速度每幀衰減比例
+    var MAX_NODES = 46;
+
+    // 常態分布（Box-Muller），讓每個節點的雜訊點平滑地向外衰減，不會有明確的邊界
     function randNormal() {
         var u = Math.random() || 1e-6;
         var v = Math.random();
@@ -39,25 +51,51 @@
     resize();
     window.addEventListener('resize', resize);
 
-    // 滑鼠影響雜訊頻率：移動越快，畫面更新頻率越高，游標周圍雜訊也越密集
     var mouseX = -9999, mouseY = -9999;
     var lastMouseX = -9999, lastMouseY = -9999;
-    var disturbance = 0; // 0~1，隨時間自然衰減
+    var lastSpawnX = -9999, lastSpawnY = -9999;
+    var nodes = []; // { x, y, vx, vy, angle, birth, phase }
 
-    var velX = 0, velY = 0;               // 平滑後的滑鼠移動方向向量
-    var dirAngle = 0;                     // 擴散形狀目前使用的方向角，移動時才更新
-    var wobblePhase = Math.random() * Math.PI * 2; // 讓方向持續小幅波動，避免固定成一條直線
+    function spawnNode(x, y, angle, now) {
+        nodes.push({
+            x: x, y: y,
+            vx: Math.cos(angle) * DRIFT_SPEED_PX,
+            vy: Math.sin(angle) * DRIFT_SPEED_PX,
+            angle: angle,
+            birth: now,
+            phase: Math.random() * Math.PI * 2
+        });
+        if (nodes.length > MAX_NODES) { nodes.shift(); }
+    }
 
     window.addEventListener('mousemove', function (e) {
         mouseX = e.clientX;
         mouseY = e.clientY;
+        var now = performance.now();
+
         if (lastMouseX > -9999) {
             var dx = mouseX - lastMouseX;
             var dy = mouseY - lastMouseY;
             var dist = Math.sqrt(dx * dx + dy * dy);
-            disturbance = Math.min(1, disturbance + dist * 0.01);
-            velX = velX * 0.75 + dx * 0.25;
-            velY = velY * 0.75 + dy * 0.25;
+            if (dist > 0.0001) {
+                var angle = Math.atan2(dy, dx);
+                var sdx = mouseX - lastSpawnX;
+                var sdy = mouseY - lastSpawnY;
+                var sdist = Math.sqrt(sdx * sdx + sdy * sdy);
+                // 依實際移動距離內插生成多個節點，滑鼠移動再快尾巴也不會斷點
+                while (sdist >= NODE_SPACING) {
+                    var t = NODE_SPACING / sdist;
+                    lastSpawnX += sdx * t;
+                    lastSpawnY += sdy * t;
+                    spawnNode(lastSpawnX, lastSpawnY, angle, now);
+                    sdx = mouseX - lastSpawnX;
+                    sdy = mouseY - lastSpawnY;
+                    sdist = Math.sqrt(sdx * sdx + sdy * sdy);
+                }
+            }
+        } else {
+            lastSpawnX = mouseX;
+            lastSpawnY = mouseY;
         }
         lastMouseX = mouseX;
         lastMouseY = mouseY;
@@ -73,11 +111,9 @@
     function draw(now) {
         requestAnimationFrame(draw);
 
-        disturbance *= 0.95; // 每幀衰減，讓擾動效果自然消退
-        if (disturbance < 0.002) { disturbance = 0; }
-
-        var interval = BASE_INTERVAL - (BASE_INTERVAL - MIN_INTERVAL) * disturbance;
+        var interval = nodes.length > 0 ? MIN_INTERVAL : BASE_INTERVAL;
         if (now - lastDraw < interval) { return; }
+        var dt = lastDraw ? (now - lastDraw) : 16;
         lastDraw = now;
 
         var data = imgData.data;
@@ -96,24 +132,32 @@
             data[idx + 2] = DOT[2];
         }
 
-        if (disturbance > 0 && mouseX > -9999) {
-            var speed = Math.sqrt(velX * velX + velY * velY);
-            if (speed > 0.4) { dirAngle = Math.atan2(velY, velX); }
+        for (var n = nodes.length - 1; n >= 0; n--) {
+            var node = nodes[n];
+            var age = now - node.birth;
+            if (age >= NODE_LIFE) { nodes.splice(n, 1); continue; }
 
-            wobblePhase += 0.05;
-            var wobble = Math.sin(wobblePhase) * (Math.PI / 9); // 方向約 ±20 度持續波動
-            var angle = dirAngle + wobble;
-            var elong = 1 + disturbance * 1.6 + Math.min(1, speed * 0.05); // 移動越快，沿方向拉得越長
-            var sigmaAlong = SIGMA_ALONG * elong;
-            var sigmaPerp = SIGMA_PERP / Math.sqrt(elong);
-            var cosA = Math.cos(angle), sinA = Math.sin(angle);
+            var t = age / NODE_LIFE; // 0（剛生成）→ 1（即將消失）
+            var frames = dt / 16;
 
-            var extraCount = (area * EXTRA_DENSITY * disturbance) | 0;
-            for (i = 0; i < extraCount; i++) {
-                var along = randNormal() * sigmaAlong;
-                var perp = randNormal() * sigmaPerp;
-                x = (mouseX + along * cosA - perp * sinA) | 0;
-                y = (mouseY + along * sinA + perp * cosA) | 0;
+            // 殘留速度帶來的慣性滑行，隨時間衰減──像液體被撥動後繼續漂移、逐漸靜止
+            node.x += node.vx * frames;
+            node.y += node.vy * frames;
+            node.vx *= Math.pow(DRIFT_DECAY, frames);
+            node.vy *= Math.pow(DRIFT_DECAY, frames);
+
+            // 垂直於當初移動方向的擺動，振幅隨年齡增加，像尾鰭甩動、液體逐漸散開飄動
+            var wave = Math.sin(age * WAVE_FREQ + node.phase) * WAVE_AMP * t;
+            var px = node.x - Math.sin(node.angle) * wave;
+            var py = node.y + Math.cos(node.angle) * wave;
+
+            var sigma = NODE_SIGMA_START + (NODE_SIGMA_END - NODE_SIGMA_START) * t;
+            var intensity = 1 - t; // 越老越淡
+            var dotCount = (NODE_DOT_BASE * intensity) | 0;
+
+            for (i = 0; i < dotCount; i++) {
+                x = (px + randNormal() * sigma) | 0;
+                y = (py + randNormal() * sigma) | 0;
                 if (x < 0 || x >= width || y < 0 || y >= height) { continue; }
                 idx = (y * width + x) * 4;
                 data[idx] = DOT[0];
