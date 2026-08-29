@@ -31,6 +31,16 @@
             font-family: 'Lora', serif; /* 襯線字體 */
             background: #d9d9d9;
         }
+        #noise-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -1;
+            pointer-events: none;
+            display: block;
+        }
         p.copyright {
             font-size: 10px;
             color: #666;
@@ -100,6 +110,10 @@
 </head>
 
 <body data-pagenum="4">
+
+    <!-- 細沙點狀雜訊背景，滑鼠經過時會影響雜訊頻率／密度 -->
+    <canvas id="noise-bg" aria-hidden="true"></canvas>
+    <script async src="js/noise-bg.js"></script>
 
     <div class="wrapper">
 		
