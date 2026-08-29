@@ -9,8 +9,8 @@
     var BASE_DENSITY = 0.025;   // 靜止時的基礎雜訊密度（佔畫布像素比例）
     var EXTRA_DENSITY = 0.05;   // 滑鼠擾動時，額外增加的雜訊密度
     var BASE_INTERVAL = 90;     // 靜止時的重繪間隔（毫秒）／頻率較低
-    var MIN_INTERVAL = 16;      // 擾動最大時的重繪間隔／頻率較高（約 60fps）
-    var RADIUS = 140;           // 滑鼠周圍受影響的半徑（px）
+    var MIN_INTERVAL = 30;      // 擾動最大時的重繪間隔／頻率較高（約 60fps）
+    var RADIUS = 100;           // 滑鼠周圍受影響的半徑（px）
 
     var width = 0, height = 0;
     var template = null; // 預先填滿背景色的樣板，每幀重繪時用來快速重置畫布
@@ -59,7 +59,7 @@
     function draw(now) {
         requestAnimationFrame(draw);
 
-        disturbance *= 0.94; // 每幀衰減，讓擾動效果自然消退
+        disturbance *= 0.95; // 每幀衰減，讓擾動效果自然消退
         if (disturbance < 0.002) { disturbance = 0; }
 
         var interval = BASE_INTERVAL - (BASE_INTERVAL - MIN_INTERVAL) * disturbance;
