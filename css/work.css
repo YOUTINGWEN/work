@@ -63,6 +63,14 @@ section{
 }
 
 /*w1*/
+.work_standee{
+	background:url("../images/standee_p0.jpg") no-repeat;
+	width: 100%;
+	aspect-ratio: 300 / 170;
+	background-size: 200%;
+}
+
+/*w2*/
 .work_concrete{
 	background:url("../images/concrete_p0.jpg") no-repeat;
 	width: 100%;
@@ -71,7 +79,7 @@ section{
 }
 
 
-/*w2*/
+/*w3*/
 .work_Sampling{
 	background:url("../images/Sampling_p0.jpg") no-repeat;
 	width: 100%;
@@ -80,7 +88,7 @@ section{
 }
 
 
-/*w3*/
+/*w4*/
 .work_B{
 	background:url("../images/Build_p0.png") no-repeat;
 	width: 100%;
@@ -90,7 +98,7 @@ section{
 
 
 
-/*w4*/
+/*w5*/
 .work_c{
 	background: url("../images/Cultivating_p0.jpg") no-repeat;
 	width: 100%;
@@ -100,7 +108,7 @@ section{
 
 
 
-/*w5*/
+/*w6*/
 .work_w{
 	background: url("../images/walking_p0.png") no-repeat;
 	width: 100%;
@@ -110,7 +118,7 @@ section{
 
 
 
-/*w6*/
+/*w7*/
 .work_b{
 	background: url("../images/building_p0.png")no-repeat;
 	width: 100%;
@@ -120,7 +128,7 @@ section{
 
 
 
-/*w7*/
+/*w8*/
 .work_m{
 	background: url("../images/mur_p0.png") no-repeat;
 	width: 100%;
@@ -130,7 +138,7 @@ section{
 
 
 
-/*w8*/
+/*w9*/
 .work_s{
 	background: url("../images/Scattered_p0.png") no-repeat;
 	width: 100%;
@@ -139,7 +147,7 @@ section{
 }
 
 
-/*w9*/
+/*w10*/
 .work_sp{
 	background: url("../images/Spiral_p0.jpg") no-repeat;
 	width: 100%;
