@@ -26,6 +26,14 @@
     <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"></script>
     <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
 
+    <style>
+        /* 圖片是放在 .introtext（左右各有 20px padding）裡面，YouTube 影片原本放在
+           沒有 padding 的 .work-mov 裡、寬度又是 90%（圖片是 97%），所以左右邊界都對不齊。
+           這裡讓 .work-mov 比照 .introtext 的左右 padding，讓影片跟圖片的起始位置一致。 */
+        .work-mov {
+            padding: 0 20px;
+        }
+    </style>
 </head>
 
 <body data-pagenum="1">
@@ -89,7 +97,7 @@
 	</article>
 <article>
 	<div class="work-mov">
-	<iframe src="https://www.youtube.com/embed/PidgNdn3j_c" style="height: 500px; width: 90%" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+	<iframe src="https://www.youtube.com/embed/PidgNdn3j_c" style="height: 500px; width: 97%" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 	</div>	
 
 	<div class="introtext">
