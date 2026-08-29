@@ -1,0 +1,5 @@
+url: "https://youtingwen.github.io"
+baseurl: "/work"
+
+plugins:
+  - jekyll-sitemap
