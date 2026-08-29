@@ -7,24 +7,31 @@
     var DOT = [236, 236, 236];  // 靜止時基礎雜訊點，比背景更淺的灰色
     var TRAIL_DOT = [248, 248, 248]; // 尾巴雜訊點用更亮一點的灰色，加強流動感的能見度
 
-    var BASE_DENSITY = 0.025;   // 靜止時的基礎雜訊密度（佔畫布像素比例）
+    // 畫布內部解析度縮放：用比 CSS 尺寸更小的實際畫布搭配瀏覽器的縮放拉伸顯示，
+    // 大幅降低每幀要處理／複製的像素數量，避免滑鼠移動時主執行緒忙不過來造成卡頓；
+    // 副作用是每個雜訊點在畫面上也會跟著放大一點，反而讓效果更明顯。
+    var RENDER_SCALE = 0.55;
+
+    var BASE_DENSITY = 0.02;    // 靜止時的基礎雜訊密度（佔畫布像素比例）
     var BASE_INTERVAL = 90;     // 靜止時的重繪間隔（毫秒）／頻率較低
     var MIN_INTERVAL = 30;      // 有尾巴節點存在時的重繪間隔／頻率較高
 
     // 尾翼軌跡：滑鼠移動時沿路徑生成節點，每個節點會像液體一樣隨時間擴散、變淡、
     // 帶著慣性殘留速度繼續滑一小段，並垂直於行進方向左右擺動，形成拖曳的尾巴
-    var NODE_SPACING = 14;      // 每隔多少 px 生成一個新節點（決定尾巴的密度／連續性）
-    var NODE_LIFE = 1100;       // 節點壽命（毫秒），越長尾巴越長越明顯
-    var NODE_SIGMA_START = 14;  // 節點剛生成時的擴散半徑
-    var NODE_SIGMA_END = 52;    // 節點消散前的擴散半徑（像液體逐漸散開）
-    var NODE_DOT_BASE = 130;    // 節點最新鮮時，每幀繪製的雜訊點數量上限
-    var WAVE_FREQ = 0.012;      // 尾翼擺動的頻率
-    var WAVE_AMP = 32;          // 尾翼擺動的最大振幅（px）
-    var DRIFT_SPEED_PX = 3;     // 生成瞬間的殘留速度（px／每 16ms 幀），與生成時的方向一致，
-                                 // 用固定值而非滑鼠事件的原始位移，避免滑鼠移動事件間距忽大
-                                 // 忽小時，節點暴衝飛出原本的路徑
+    // （以下座標／距離相關數值以「畫面上看起來的 px」設定，實際運算時會乘上
+    // RENDER_SCALE 換算成畫布內部座標）
+    var NODE_SPACING = 14 * RENDER_SCALE;      // 每隔多少 px 生成一個新節點（決定尾巴的密度／連續性）
+    var NODE_LIFE = 1100;                      // 節點壽命（毫秒），越長尾巴越長越明顯
+    var NODE_SIGMA_START = 14 * RENDER_SCALE;  // 節點剛生成時的擴散半徑
+    var NODE_SIGMA_END = 52 * RENDER_SCALE;    // 節點消散前的擴散半徑（像液體逐漸散開）
+    var NODE_DOT_BASE = 95;                    // 節點最新鮮時，每幀繪製的雜訊點數量上限
+    var WAVE_FREQ = 0.012;                     // 尾翼擺動的頻率
+    var WAVE_AMP = 32 * RENDER_SCALE;          // 尾翼擺動的最大振幅
+    var DRIFT_SPEED_PX = 3 * RENDER_SCALE;     // 生成瞬間的殘留速度（每 16ms 幀），與生成時的方向一致，
+                                                // 用固定值而非滑鼠事件的原始位移，避免滑鼠移動事件間距
+                                                // 忽大忽小時，節點暴衝飛出原本的路徑
     var DRIFT_DECAY = 0.9;      // 殘留速度每幀衰減比例
-    var MAX_NODES = 46;
+    var MAX_NODES = 36;
 
     // 常態分布（Box-Muller），讓每個節點的雜訊點平滑地向外衰減，不會有明確的邊界
     function randNormal() {
@@ -38,8 +45,8 @@
     var imgData = null;
 
     function resize() {
-        width = canvas.width = window.innerWidth;
-        height = canvas.height = window.innerHeight;
+        width = canvas.width = Math.round(window.innerWidth * RENDER_SCALE);
+        height = canvas.height = Math.round(window.innerHeight * RENDER_SCALE);
         imgData = ctx.createImageData(width, height);
         template = new Uint8ClampedArray(width * height * 4);
         for (var i = 0; i < template.length; i += 4) {
@@ -70,8 +77,8 @@
     }
 
     window.addEventListener('mousemove', function (e) {
-        mouseX = e.clientX;
-        mouseY = e.clientY;
+        mouseX = e.clientX * RENDER_SCALE;
+        mouseY = e.clientY * RENDER_SCALE;
         var now = performance.now();
 
         if (lastMouseX > -9999) {
