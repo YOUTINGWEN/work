@@ -100,6 +100,15 @@ article{
 
 /*===============rwd details===============*/
 
+/* 手機螢幕較窄，article 固定 80% 寬會讓裡面的文字、圖片、影片都被擠得很窄。
+   .work-mov、.exhibitionimg 都在 article 裡面，所以放寬 article 也會一併放寬它們，
+   彼此的對齊關係不受影響，字級也完全沒有更動。 */
+@media only screen and (max-width: 700px) {
+	article{
+		width: 100%;
+	}
+}
+
 /* For tablets */
 
 @media only screen and (min-width: 768px) {
