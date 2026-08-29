@@ -48,6 +48,54 @@
 	.about_text h4 {
 	    line-height: 1.2em;
 	}
+
+	/* 兩個 h3 區塊各自看似無規律地漂移，hover 時停止 */
+	.drift {
+	    display: inline-block;
+	    position: relative;
+	    animation-timing-function: ease-in-out;
+	    animation-iteration-count: infinite;
+	}
+	.drift:hover {
+	    animation-play-state: paused;
+	}
+	.drift-mail {
+	    animation-name: drift-mail;
+	    animation-duration: 19s;
+	}
+	.drift-social {
+	    animation-name: drift-social;
+	    animation-duration: 24s;
+	}
+	@keyframes drift-mail {
+	    0%   { transform: translate(0px, 0px); }
+	    12%  { transform: translate(45px, -20px); }
+	    26%  { transform: translate(-15px, 35px); }
+	    41%  { transform: translate(60px, 15px); }
+	    58%  { transform: translate(10px, -45px); }
+	    73%  { transform: translate(-40px, 10px); }
+	    89%  { transform: translate(20px, 30px); }
+	    100% { transform: translate(0px, 0px); }
+	}
+	@keyframes drift-social {
+	    0%   { transform: translate(0px, 0px); }
+	    15%  { transform: translate(-35px, 25px); }
+	    33%  { transform: translate(30px, -30px); }
+	    47%  { transform: translate(-50px, -10px); }
+	    64%  { transform: translate(15px, 40px); }
+	    81%  { transform: translate(-20px, -30px); }
+	    100% { transform: translate(0px, 0px); }
+	}
+	@media only screen and (max-width: 700px) {
+	    .drift-mail, .drift-social {
+	        animation: none;
+	    }
+	}
+	@media (prefers-reduced-motion: reduce) {
+	    .drift-mail, .drift-social {
+	        animation: none;
+	    }
+	}
     </style>
 </head>
 
@@ -79,14 +127,18 @@
 	<article>
 		<div class="about_text">
 			
+			<div class="drift drift-mail">
 			<h3>mail</h3>
 			<h4><a href="mailto:belinda0516110584@gmail.com" target="_blank" style="color:gray">belinda0516110584@gmail.com</a></h4>
-			
+			</div>
+
 			<p>&ensp;</p>
-			
+
+			<div class="drift drift-social">
 			<h3>social media</h3>
 			<h4><a href="https://www.facebook.com/youtingwen0324" target="_blank" style="color:gray" >Facebook</a></h4>
 			<h4><a href="https://vimeo.com/user92406257" target="_blank" style="color:gray" >Vimeo</a></h4>
+			</div>
 			
 		</div>
 		
