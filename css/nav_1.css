@@ -199,12 +199,25 @@ a[data-toggle="collapse"] {
 }
 
 
-.dropdown-toggle::after { /*箭頭的距離*/
+.dropdown-toggle::after { /*箭頭：未選取時指向文字，hover/展開時放大並指向下方*/
+    content: "";
     display: block;
     position: absolute;
     top: 50%;
 	left: 90px;
-    transform: translateY(-40%);
+    width: 0;
+    height: 0;
+    border-left: 4px solid transparent;
+    border-right: 4px solid transparent;
+    border-top: 5px solid currentColor;
+    transform: translateY(-50%) rotate(90deg);
+    transform-origin: center;
+    transition: transform 0.25s ease;
+}
+
+.dropdown-toggle:hover::after,
+.dropdown-toggle[aria-expanded="true"]::after {
+    transform: translateY(-50%) rotate(0deg) scale(1.3);
 }
 
 .dropdown-toggle>a :after { /*箭頭的距離*/
