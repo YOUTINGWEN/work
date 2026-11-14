@@ -87,6 +87,14 @@ section{
 	background-size: 200%;
 }
 
+/*w3-1*/
+.work_samplezine{
+	background:url("../images/samplezine_p0.jpg") no-repeat;
+	width: 100%;
+	aspect-ratio: 300 / 170;
+	background-size: 200%;
+}
+
 
 /*w4*/
 .work_B{
