@@ -1,0 +1,191 @@
+---
+---
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+	
+	<!-- icon -->
+	<link rel="icon" sizes="192x192" href="images/logo3.ico">
+	<link rel="shortcut icon" href="images/logo3.ico" type="image/x-icon"/>
+	<link rel="apple-touch-icon" href="images/logo3.ico" type="image/x-icon"/>
+
+    <title>游婷雯 Yu Ting-Wen｜界標 Boundary Mark</title>
+    <meta name="description" content="游婷雯 Yu Ting-Wen 作品《界標》，立體雕塑、聲音裝置，2026。">
+
+    <!-- Bootstrap CSS CDN -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+    <!-- Our Custom CSS -->
+    <link rel="stylesheet" href="css/nav_1.css">
+	<link rel="stylesheet" href="css/work_1.css">
+
+
+    <!-- Font Awesome JS -->
+    <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"></script>
+    <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
+<!-- 引入 Google Fonts -->
+	<link href="https://fonts.googleapis.com/css2?family=Lora:wght@400&display=swap" rel="stylesheet">
+<style>
+        body {
+            margin: 0;
+            font-family: 'Lora', serif; /* 襯線字體 */
+        }
+        p.copyright {
+            font-size: 10px;
+            color: #666;
+            text-align: center;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            padding: 3px 30px;
+            letter-spacing: 0.5px;
+	}
+    </style>
+</head>
+
+<body data-pagenum="0" data-worknum="0">
+
+    <div class="wrapper">
+		
+        {% include nav.html %}
+
+        <!-- Page Content Holder -->
+        <div id="content">
+
+            <nav class="navbar navbar-expand-lg ">
+                <div class="container-fluid">
+
+                    <button type="button" id="sidebarCollapse" class="navbar-btn" aria-label="切換選單 Toggle navigation">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+
+                </div>
+            </nav>
+		
+		
+<!--section-->
+<section>
+	
+	<div class="work-pic">
+		<img src="images/Standee_p1.jpg" width="100%" alt="Standee_p1"/>
+	</div>
+	
+	
+	<article>
+	<div class="introtext">
+		<h1>出售立牌Selling Standee</h1>
+		<p>立體裝置、聲音感應裝置<br>Sculpture, Sound Sensor</p>
+		<p>水泥、田土、草、木頭、竹架、pp瓦愣版<br>cement, field soil, grass, wood, bamboo structure, PP corrugated sheet</p>
+		<p>2026</p>
+	
+		
+			<p>土地成為被立起來之物。<br>出售立牌待在地上，
+    		  <br>為自己的領地範圍吠叫！</p>
+		
+		
+		<p>The land becomes something standed, 
+			<br>and signs lay on the ground, barking to mark their territory.
+		</p>
+	</div>
+	</article>
+	
+	
+	
+	
+	<div class="work-pic">
+
+		<style>
+ 		 .gallery {
+ 		   display: grid;
+		    grid-template-columns: 1fr 1fr; /* 兩欄 */
+		    gap: 10px; /* 間距 */
+		  }
+		  .gallery img {
+		    width: 100%; /* 填滿欄位 */
+		    height: auto;
+ 		   display: block;
+		  }
+
+		  /* 特例：大圖佔兩欄 */
+ 		 .gallery img.full {
+ 		   grid-column: span 2;
+		  }
+		</style>
+
+		<div class="gallery">
+		<img src="images/Standee_p2.jpg" class="full" alt="Standee_p2"/>
+		<img src="images/Standee_p3.jpg" alt="Standee_p3"/>
+		<img src="images/Standee_p4.jpg" alt="Standee_p4"/>
+		<img src="images/Standee_p5.jpg" alt="Standee_p5"/>
+		<img src="images/Standee_p6.jpg" alt="Standee_p6"/>
+		<img src="images/Standee_p7.jpg" class="full" alt="Standee_p7"/>
+
+			
+		</div>
+
+
+
+		
+	</div>
+
+	<article>
+
+	<div class="introtext">
+
+	
+	</div>
+	</article>
+
+
+	
+	
+</section>
+			
+	 <p class="copyright">©2026 Ting-Wen You. All Rights Reserved.</p>
+		
+				
+	</div>
+</div>
+
+    <!-- jQuery CDN - Slim version (=without AJAX) -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <!-- Popper.JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
+    <!-- Bootstrap JS -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#sidebarCollapse').on('click', function () {
+                $('#sidebar').toggleClass('active');
+                $(this).toggleClass('active');
+            });
+        });
+    </script>
+
+	
+	<script>
+		$(document).ready(function(){
+	
+	var pn = $("body").data("pagenum");
+	$(".li_1").eq(pn) .addClass("nav_ch");
+	//增加點選頁面後的固定底線，記得body後面增加編號
+		})
+	
+	
+		$(document).ready(function(){
+	
+	var pn = $("body").data("worknum");
+	$(".li_2").eq(pn) .addClass("nav_w");
+	//增加點選頁面後的固定底線，記得body後面增加編號
+		})
+	</script>
+	
+	
+	
+</body>
