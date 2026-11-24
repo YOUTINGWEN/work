@@ -234,26 +234,7 @@ a[data-toggle="collapse"] {
 
 
 
-/* DESIGN WORKs 固定在畫面左下角（跟著側欄一起收合） */
-#sidebar .sidebar-bottom {
-    position: fixed;
-    left: 0;
-    bottom: 30px;
-    width: 220px;
-    z-index: 10;
-}
-
-#sidebar .sidebar-bottom a {
-    color: #000000;
-    padding: 10px 8px;
-    font-size: 14px;
-    display: block;
-}
-
-#sidebar .sidebar-bottom a:hover {
-    color: #CBCBCB;
-}
-
+ 
 
 
 /* ---------------------------------------------------
