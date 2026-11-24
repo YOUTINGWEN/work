@@ -138,7 +138,9 @@ a, a:hover, a:focus {
     display: flex;
     width: 100%;
     align-items: stretch;
-    perspective: 1500px;
+    /* 3D 收合的透視效果改寫在 #sidebar 的 transform 裡（perspective()）。
+       若把 perspective 設在 .wrapper 上，裡面 position: fixed 的元素會以 .wrapper
+       （整頁高度）為基準，DESIGN WORKs 就無法固定在畫面左下角。 */
 }
 
 
@@ -151,7 +153,7 @@ a, a:hover, a:focus {
 
 #sidebar.active {
     margin-left: -220px;
-    transform: rotateY(100deg);
+    transform: perspective(1500px) rotateY(100deg);
 }
 
 #sidebar .sidebar-header {
@@ -305,7 +307,7 @@ a[data-toggle="collapse"] {
 @media (max-width: 768px) {
     #sidebar {
         margin-left: -220px;
-        transform: rotateY(90deg);
+        transform: perspective(1500px) rotateY(90deg);
     }
 	
     #sidebar.active {
