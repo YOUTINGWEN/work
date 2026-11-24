@@ -63,6 +63,14 @@ section{
 }
 
 /*w1*/
+.work_mark{
+	background:url("../images/mark(draft)_p0.jpg") no-repeat;
+	width: 100%;
+	aspect-ratio: 300 / 170;
+	background-size: 200%;
+}
+
+/*w1*/
 .work_standee{
 	background:url("../images/Standee_p0.jpg") no-repeat;
 	width: 100%;
